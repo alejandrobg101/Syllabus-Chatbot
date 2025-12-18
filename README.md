@@ -137,34 +137,34 @@ CREATE TABLE IF NOT EXISTS users (
 
 Before using the Streamlit frontend, make sure the backend is running.
 
-- Step 1: Run the REST API
+### Step 1: Run the REST API
 
--- Start the main chatbot backend:
+1. Start the main chatbot backend:
 
-```bash
-python main.py
+    ```bash
+    python main.py
+    ```
 
-```
+2. Start the file handler for PDF processing:
 
--- Start the file handler for PDF processing:
+    ```bash
+    python filehandler.py
+    ```
 
-```bash
-python filehandler.py
-```
+> Both scripts should remain running while using the Streamlit app. They provide the API endpoints the frontend relies on.
 
--- Both scripts should remain running while using the Streamlit app. They provide the API endpoints the frontend relies on.
+### Step 2: Run the Streamlit Frontend
 
--Step 2: Run the Streamlit Frontend
+1. Open a new terminal, navigate to the project folder, and run:
 
--- In a new terminal, navigate to the project folder and run:
+    ```bash
+    streamlit run app.py
+    ```
 
-```bash
-streamlit run app.py
-```
+2. This will launch the Streamlit interface in your default web browser.
 
--- This will launch the Streamlit interface in your default web browser.
+3. You can interact with the chatbot in real-time and upload PDFs to be processed by the backend.
 
--- You can interact with the chatbot in real-time and upload PDFs to be processed by the backend.
 
 ### Additional Notes
 
