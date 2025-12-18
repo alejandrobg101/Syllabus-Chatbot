@@ -1,12 +1,23 @@
-Hosted database: https://project-jac-b441daed17a6.herokuapp.com/api/
+# Chatbot with REST API and Streamlit Frontend
 
-Credentials:
-Host : c8qf22e50d0hk5.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com
+This project is a **chatbot application** with a REST API backend and a **Streamlit frontend** for interacting with it. It allows users to send queries to the chatbot and receive responses in real-time.
 
-Database : dc1ofcmth077rf
+## Features
+- REST API backend for chatbot interactions
+- Streamlit frontend for a simple and interactive UI
+- PDF reader integration for processing documents
+- Large Language Model (LLM) based on **LLaMA 3.2**
+- Modular and extensible architecture
 
-User : u9q14d3sdsfbt7
+## Database Configuration
+For personal use, you need to provide your own database configuration. The project uses PostgreSQL and expects a `db_config` dictionary like this:
 
-Ports : 5432
-
-Password : pf57a7bdec3518ee7a464a6352630779111e19221a15126dc553d061c6af03b77
+```python
+# Database configuration information
+db_config = {
+    'user': '<your_db_user>',
+    'passwd': '<your_db_password>',
+    'dbname': '<your_db_name>',
+    'host': '<your_db_host>',
+    'port': '<your_db_port>'
+}
