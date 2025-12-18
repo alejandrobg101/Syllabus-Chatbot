@@ -1,0 +1,24 @@
+Index: app/config/dbconfig.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>pg_config = {\r\n    'dbname': 'dc1ofcmth077rf',\r\n    'user': 'u9q14d3sdsfbt7',\r\n    'passwd': 'pf57a7bdec3518ee7a464a6352630779111e19221a15126dc553d061c6af03b77',\r\n    'port': 5432,\r\n    'host': 'c8qf22e50d0hk5.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/config/dbconfig.py b/app/config/dbconfig.py
+--- a/app/config/dbconfig.py	
++++ b/app/config/dbconfig.py	
+@@ -1,7 +1,7 @@
+ pg_config = {
+-    'dbname': 'dc1ofcmth077rf',
+-    'user': 'u9q14d3sdsfbt7',
+-    'passwd': 'pf57a7bdec3518ee7a464a6352630779111e19221a15126dc553d061c6af03b77',
+-    'port': 5432,
+-    'host': 'c8qf22e50d0hk5.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com'
++    'dbname': 'dbfall25',
++    'user': 'dbuser',
++    'passwd': 'dbfall25',
++    'port': 8182,
++    'host': 'localhost'
+ }
+\ No newline at end of file

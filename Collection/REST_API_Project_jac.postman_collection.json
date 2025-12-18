@@ -1,0 +1,708 @@
+{
+	"info": {
+		"_postman_id": "9bc506b2-23e9-45d1-88ec-73f872c1410a",
+		"name": "REST_API_Project_jac",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26085550"
+	},
+	"item": [
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/classes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cname\": \"CIIC\",\r\n  \"ccode\": \"3082\",\r\n  \"cdesc\": \"Introduction to Computer Programming I\",\r\n  \"term\": \"First Semester\",\r\n  \"years\": \"Every Year\",\r\n  \"cred\": 3,\r\n  \"csyllabus\": \"url\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/classes",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"classes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/classes/38",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/classes/38",
+					"protocol": "http",
+					"host": [
+                        "project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"classes",
+						"38"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/classes/38",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cdesc\": \"Updated course description\",\r\n  \"cred\": 4\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/classes/38",
+					"protocol": "http",
+					"host": [
+                        "project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"classes",
+						"38"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/classes/39",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/classes/39",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"classes",
+						"39"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/rooms",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"building\": \"Stefanis\",\r\n  \"room_number\": \"103\",\r\n  \"capacity\": 50\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/rooms",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/rooms/28",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/room/28",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"room",
+						"28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/rooms/28",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"capacity\": 60\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/room/28",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"room",
+						"28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/room/28",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/room/28",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"room",
+						"28"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/meeting",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"ccode\": \"120\",\r\n  \"starttime\": \"2024-08-20T10:30:00\",\r\n  \"endtime\": \"2024-08-20T11:45:00\",\r\n  \"cdays\": \"MJ\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/meeting",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"meeting"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/meeting/21",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/meeting/21",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"meeting",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/meeting/21",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"ccode\": \"1220\", \r\n  \"starttime\": \"2024-08-20T10:30:00\", \r\n  \"endtime\": \"2024-08-20T11:45:00\", \r\n  \"cdays\": \"MJ\" \r\n} \r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/meeting/21",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"meeting",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/meeting/21",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/meeting/21",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"meeting",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/section",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"roomid\": 1,\r\n  \"cid\": 38,\r\n  \"mid\": 1,\r\n  \"semester\": \"Fall\",\r\n  \"years\": \"2024\",\r\n  \"capacity\": 10\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/section",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"section"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/section/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/section/1",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"section",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/section/1",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"roomid\": 1,\r\n  \"cid\": 38,\r\n  \"mid\": 1,\r\n  \"semester\": \"Fall\",\r\n  \"years\": \"2024\",\r\n  \"capacity\": 11\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/section/1",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"section",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/section/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/section/1",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"section",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/requisite",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"classid\": 38,\r\n  \"reqid\": 3,\r\n  \"prereq\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/requisite",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"requisite"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/requisite/38/3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/requisite/38/3",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"requisite",
+						"38",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/requisite/38/3",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/requisite/38/3",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"requisite",
+						"38",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/sections-by-day?year=2024&semester=Fall",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/sections-by-day?year=2024&semester=Fall",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"stats",
+						"sections-by-day"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2024"
+						},
+						{
+							"key": "semester",
+							"value": "Fall"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/top-classes-by-avg-duration?year=2024&semester=Fall&limit=10",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/top-classes-by-avg-duration?year=2024&semester=Fall&limit=10",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"stats",
+						"top-classes-by-avg-duration"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2024"
+						},
+						{
+							"key": "semester",
+							"value": "Fall"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/top-rooms-by-utilization?year=2024&semester=Fall&limit=5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/top-rooms-by-utilization?year=2024&semester=Fall&limit=5",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"stats",
+						"top-rooms-by-utilization"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2024"
+						},
+						{
+							"key": "semester",
+							"value": "Fall"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/multi-room-classes?year=2023&semester=Spring&limit=5&orderby=desc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/multi-room-classes?year=2023&semester=Spring&limit=5&orderby=desc",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"stats",
+						"multi-room-classes"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2023"
+						},
+						{
+							"key": "semester",
+							"value": "Spring"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "orderby",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/top-departments-by-sections?year=2024&semester=Fall&limit=5",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/top-departments-by-sections?year=2024&semester=Fall&limit=5",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"stats",
+						"top-departments-by-sections"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2024"
+						},
+						{
+							"key": "semester",
+							"value": "Fall"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/classes-without-prereqs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://project-jac-b441daed17a6.herokuapp.com/api/stats/classes-without-prereqs",
+					"protocol": "http",
+					"host": [
+						"project-jac-b441daed17a6",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+                        "api",
+						"stats",
+						"classes-without-prereqs"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

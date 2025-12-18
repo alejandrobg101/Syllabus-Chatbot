@@ -1,0 +1,12 @@
+Hosted database: https://project-jac-b441daed17a6.herokuapp.com/api/
+
+Credentials:
+Host : c8qf22e50d0hk5.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com
+
+Database : dc1ofcmth077rf
+
+User : u9q14d3sdsfbt7
+
+Ports : 5432
+
+Password : pf57a7bdec3518ee7a464a6352630779111e19221a15126dc553d061c6af03b77

@@ -1,0 +1,15 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+Flask==3.1.2
+Flask-Cors==6.0.1
+psycopg2-binary==2.9.11
+gunicorn==21.2.0
+pypdf==4.3.1
+sentence-transformers==3.1.1
+torch==2.6.0+cpu
+langchain==0.3.0
+langchain-core==0.3.0
+langchain-community==0.3.0
+langchain-ollama==0.2.0
+langchain-text-splitters==0.3.0
+ollama==0.3.3
+numpy<2.0.0,>=1.26.0

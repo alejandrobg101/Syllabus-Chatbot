@@ -1,0 +1,289 @@
+Index: app/config/dbconfig.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/config/dbconfig.py b/app/config/dbconfig.py
+--- a/app/config/dbconfig.py	(revision fef299db14907a98b7aba16f9f7d1fe0b239c069)
++++ b/app/config/dbconfig.py	(date 1764819996148)
+@@ -1,0 +1,7 @@
++pg_config = {
++    'dbname': 'dbfall25',
++    'user': 'dbuser',
++    'passwd': 'dbfall25',
++    'port': 8182,
++    'host': 'localhost'
++}
+\ No newline at end of file
+Index: chatbot.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/chatbot.py b/chatbot.py
+new file mode 100644
+--- /dev/null	(date 1764819996148)
++++ b/chatbot.py	(date 1764819996148)
+@@ -0,0 +1,50 @@
++import streamlit as st
++import time
++from llm.chatollama import ChatOllamaBot
++
++
++st.write("Streamlit loves LLMs! 🤖 [Build your own chat app](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps) in minutes, then make it powerful by adding images, dataframes, or even input widgets to the chat.")
++
++st.caption("Note that this demo app isn't actually connected to any LLMs. Those are expensive ;)")
++bot = ChatOllamaBot()
++
++
++# Initialize chat history
++if "messages" not in st.session_state:
++    st.session_state.messages = [{"role": "assistant", "content": "Let's start chatting! 👇"}]
++
++# Display chat messages from history on app rerun
++for message in st.session_state.messages:
++    with st.chat_message(message["role"]):
++        st.markdown(message["content"])
++# Accept user input
++if prompt := st.chat_input("What is up?"):
++    # Add user message to chat history
++    st.session_state.messages.append({"role": "user", "content": prompt})
++    # Display user message in chat message container
++    with st.chat_message("user"):
++        st.markdown(prompt)
++
++    # Display assistant response in chat message container
++    with st.chat_message("assistant"):
++        message_placeholder = st.empty()
++        full_response = ""
++        # assistant_response = random.choice(
++        #     [
++        #         "Hello there! How can I assist you today?",
++        #         "Hi, human! Is there anything I can help you with?",
++        #         "Do you need help?",
++        #     ]
++        # )
++
++        #Call to LLM, this case using Ollama
++        assistant_response  = bot.chat(prompt)
++        # Simulate stream of response with milliseconds delay
++        for chunk in assistant_response.split():
++            full_response += chunk + " "
++            time.sleep(0.05)
++            # Add a blinking cursor to simulate typing
++            message_placeholder.markdown(full_response + "▌")
++        message_placeholder.markdown(full_response)
++    # Add assistant response to chat history
++    st.session_state.messages.append({"role": "assistant", "content": full_response})
+\ No newline at end of file
+Index: load_syllabus.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/load_syllabus.py b/load_syllabus.py
+new file mode 100644
+--- /dev/null	(date 1764819996149)
++++ b/load_syllabus.py	(date 1764819996149)
+@@ -0,0 +1,108 @@
++import os
++from pypdf import PdfReader
++from langchain_text_splitters import RecursiveCharacterTextSplitter, SentenceTransformersTokenTextSplitter
++from sentence_transformers import SentenceTransformer
++import psycopg2
++from psycopg2.extras import execute_batch
++
++# ============================= CONFIG =============================
++DB_URL = "postgresql://dbuser:@localhost:5432/dbfall25"  # ← change if needed
++PDF_FOLDER = "./files"  # ← your PDFs are here
++MODEL_NAME = "all-mpnet-base-v2"  # 768-dim, excellent quality
++CHUNK_SIZE = 300
++CHUNK_OVERLAP = 50
++BATCH_SIZE = 50  # insert 50 chunks at a time (fast + safe)
++
++# Embedding model (768 dimensions)
++model = SentenceTransformer(MODEL_NAME)
++token_splitter = SentenceTransformersTokenTextSplitter(
++    chunk_overlap=CHUNK_OVERLAP,
++    tokens_per_chunk=CHUNK_SIZE
++)
++
++character_splitter = RecursiveCharacterTextSplitter(
++    separators=["\n\n", "\n", ". ", "! ", "? ", " ", ""],
++    chunk_size=1000,
++    chunk_overlap=100,
++    length_function=len,
++)
++
++# Connect to DB
++conn = psycopg2.connect(DB_URL)
++cur = conn.cursor()
++
++# Clear previous data (optional — comment out after first run)
++print("Clearing old syllabus chunks...")
++cur.execute("DELETE FROM public.syllabus")
++conn.commit()
++
++# ============================= MAIN LOOP =============================
++pdf_files = [f for f in os.listdir(PDF_FOLDER) if f.lower().endswith(".pdf")]
++print(f"Found {len(pdf_files)} PDFs")
++
++for filename in pdf_files:
++    filepath = os.path.join(PDF_FOLDER, filename)
++    print(f"\nProcessing: {filename}")
++
++    # Extract text
++    reader = PdfReader(filepath)
++    full_text = ""
++    for page in reader.pages:
++        text = page.extract_text()
++        if text:
++            full_text += text + "\n"
++
++    if not full_text.strip():
++        print("  → Empty PDF, skipping")
++        continue
++
++    # Step 1: Character split
++    char_chunks = character_splitter.split_text(full_text)
++
++    # Step 2: Token split (respects model limits)
++    final_chunks = []
++    for chunk in char_chunks:
++        final_chunks.extend(token_splitter.split_text(chunk))
++
++    print(f"  → {len(final_chunks)} final chunks")
++
++    # Extract course code from filename (e.g., "CIIC4060_syllabus.pdf" → "CIIC4060")
++    course_code = filename.split("_")[0].split(" ")[0].upper()
++
++    # Find courseid from class table
++    cur.execute("SELECT cid FROM public.class WHERE ccode = %s", (course_code,))
++    row = cur.fetchone()
++    if row:
++        courseid = row[0]
++    else:
++        print(f"  Warning: Course {course_code} not found in class table! Using NULL")
++        courseid = None
++
++    # Prepare batch insert
++    batch_data = []
++    for idx, chunk in enumerate(final_chunks):
++        if len(chunk.strip()) < 30:
++            continue  # skip tiny chunks
++        embedding = model.encode(chunk).tolist()
++
++        batch_data.append((
++            courseid,
++            filename,
++            idx + 1,           # chunk number as "page proxy"
++            chunk,
++            embedding
++        ))
++
++    # Batch insert
++    if batch_data:
++        execute_batch(cur, """
++            INSERT INTO public.syllabus 
++            (courseid, file_name, page_number, chunk, embedding_text)
++            VALUES (%s, %s, %s, %s, %s)
++        """, batch_data, page_size=BATCH_SIZE)
++        conn.commit()
++        print(f"  → Inserted {len(batch_data)} chunks for {course_code}")
++
++print("\nALL SYLLABI LOADED SUCCESSFULLY!")
++print("You can now run the chatbot!")
++conn.close()
+\ No newline at end of file
+Index: llm/chatollama.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/llm/chatollama.py b/llm/chatollama.py
+new file mode 100644
+--- /dev/null	(date 1764819996149)
++++ b/llm/chatollama.py	(date 1764819996149)
+@@ -0,0 +1,79 @@
++from dao.fragments import FragmentDAO
++from sentence_transformers import SentenceTransformer
++from langchain_ollama import ChatOllama
++from langchain.prompts import PromptTemplate
++from langchain_core.output_parsers import StrOutputParser
++
++##model = SentenceTransformer("all-MiniLM-L6-v2")
++model = SentenceTransformer("all-mpnet-base-v2")
++class ChatOllamaBot:
++    def __init__(self):
++        self.model = SentenceTransformer("all-mpnet-base-v2")
++
++    def chat(self, question):
++        emb = self.model.encode(question)
++
++        dao = FragmentDAO()
++        framents = dao.getFragments(str(emb.tolist()))
++        context = []
++        for f in framents:
++            print(f)
++            context.append(f[2])
++
++        #print(context[0])
++
++        # Prepare Template
++        documents = "\\n".join(c for c in context)
++        #print(documents)
++
++        # Define the prompt template for the LLM
++        prompt = PromptTemplate(
++            template="""You are an assistant for question-answering tasks.
++            Use the following documents to answer the question.
++            If you don't know the answer, just say that you don't know.
++            Use five sentences maximum and keep the answer concise:
++            Documents: {documents}
++            Question: {question}
++            Answer:
++            """,
++            input_variables=["question", "documents"],
++        )
++
++#         prompt = PromptTemplate(
++#             template="""Eres un asistente para tareas de preguntas y respuestas de una universidad.
++#             Utiliza los siguientes documentos para responder la pregunta. Contesta en castellano y usa
++#             texto simple sin formatos.
++#             Si no sabes la respuesta, simplemente di que no la sabes.
++#             Utiliza cinco oraciones como máximo y mantén la respuesta concisa.
++#             Documentos: {documents}
++#             Pregunta: {question}
++#             Answer:
++#             """,
++#             input_variables=["question", "documents"],
++#         )
++# #
++        print(prompt)
++        print(prompt.format(question=question, documents=documents))
++        # exit(1)
++        # Initialize the LLM with Llama 3.1 model
++        # llm = ChatOllama(
++        #     #model="llama3.1",
++        #     model="deepseek-r1:70b",
++        #     temperature=0,
++        #     base_url = "http://136.145.77.77:11434"
++        # )
++
++        llm = ChatOllama(
++            model="llama3.2",
++            #model="phi3.5",
++            #model = "gemma3:4b",
++            temperature=0,
++        )
++        # Create a chain combining the prompt template and LLM
++        rag_chain = prompt | llm | StrOutputParser()
++
++        # Question
++
++        answer = rag_chain.invoke({"question": question, "documents": documents})
++        print(answer)
++        return answer
+\ No newline at end of file
+diff --git a/llm/__init__.py b/llm/__init__.py
+new file mode 100644
