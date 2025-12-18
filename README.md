@@ -28,7 +28,7 @@ db_config = {
 ## Tables
 ### class
 
--Stores information about courses.
+- Stores information about courses.
 
 ```sql
 CREATE TABLE IF NOT EXISTS class (
